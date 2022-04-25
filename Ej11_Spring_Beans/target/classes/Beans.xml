@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver"/>
+		<property name="url"             value="jdbc:h2:file:c:/h2/bbdd_santander"/>
+		<property name="username"        value="sa"/>
+		<property name="password"        value=""/>			
+	</bean>
+
+	<bean id="peliculaDao" class="com.curso.modelo.persistencia.PeliculaDao">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="gestorPeliculas" class="com.curso.modelo.negocio.GestorPeliculas">
+		<property name="peliculaDao" ref="peliculaDao"/>
+	</bean>
+	
+</beans>
+
