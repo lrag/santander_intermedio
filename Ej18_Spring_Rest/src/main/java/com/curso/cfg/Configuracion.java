@@ -24,7 +24,7 @@ public class Configuracion {
 	public DataSource dataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("org.h2.Driver");
-		ds.setUrl("jdbc:h2:file:c:/h2/bbdd_spring_rest");
+		ds.setUrl("jdbc:h2:file:c:/h2/bbdd_movidas_2");
 		ds.setUsername("sa");
 		ds.setPassword("");
 		return ds;

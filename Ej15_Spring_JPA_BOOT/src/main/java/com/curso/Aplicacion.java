@@ -9,13 +9,14 @@ import org.springframework.context.ApplicationContext;
 import com.curso.modelo.entidad.Cliente;
 import com.curso.modelo.negocio.GestorClientes;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class Aplicacion {
 
 	public static void main(String[] args) {
 
 		ApplicationContext appCtx = SpringApplication.run(Aplicacion.class, args);
 		
+		//Esto es perfectamente correcto y legal
 		GestorClientes gc = appCtx.getBean(GestorClientes.class);
 		
 		Cliente cli = new Cliente(null,"Maggie","C/Evergreen Terrace","555",5000);

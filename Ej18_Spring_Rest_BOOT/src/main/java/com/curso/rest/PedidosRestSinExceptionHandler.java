@@ -81,14 +81,13 @@ public class PedidosRestSinExceptionHandler {
 	
 	@PostMapping(consumes = MimeTypeUtils.APPLICATION_JSON_VALUE,
 				 produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> insertar(@Valid() @RequestBody() PedidoDto pedidoDto, BindingResult br) {
+	public ResponseEntity<?> insertar(@Valid @RequestBody PedidoDto pedidoDto, BindingResult br) {
 
 		if(br.hasErrors()) {
-			Map<String, String> errores = 
-				br.getFieldErrors()
+			Map<String, String> errores = br.getFieldErrors()
 					.stream()
-						.collect(Collectors.toMap( fe -> (String) fe.getField(), 
-								                   fe -> (String) fe.getDefaultMessage()));
+					.collect(Collectors.toMap( fe -> (String) fe.getField(), 
+								               fe -> (String) fe.getDefaultMessage()));
 			return new ResponseEntity<Object>(errores, HttpStatus.BAD_REQUEST);		
 		}
 		
@@ -105,11 +104,10 @@ public class PedidosRestSinExceptionHandler {
 			                           BindingResult br) {
 
 		if(br.hasErrors()) {
-			Map<String, String> errores = 
-				br.getFieldErrors()
+			Map<String, String> errores = br.getFieldErrors()
 					.stream()
-						.collect(Collectors.toMap( fe -> (String) fe.getField(), 
-								                   fe -> (String) fe.getDefaultMessage()));
+					.collect(Collectors.toMap( fe -> (String) fe.getField(), 
+							                   fe -> (String) fe.getDefaultMessage()));
 			return new ResponseEntity<Object>(errores, HttpStatus.BAD_REQUEST);		
 		}		
 		

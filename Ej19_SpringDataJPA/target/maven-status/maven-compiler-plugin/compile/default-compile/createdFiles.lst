@@ -1,0 +1,9 @@
+com\curso\modelo\persistencia_OLD\AbstractJPADao.class
+com\curso\modelo\persistencia\PersonaRepositorio.class
+PruebasSpring.class
+com\curso\cfg\Configuracion.class
+com\curso\modelo\persistencia_OLD\PersonaDaoJPA.class
+com\curso\modelo\negocio\GestorPersonas.class
+com\curso\modelo\entidad\Persona.class
+com\curso\modelo\persistencia_OLD\InterfaceDao.class
+com\curso\modelo\persistencia_OLD\PersonaDao.class

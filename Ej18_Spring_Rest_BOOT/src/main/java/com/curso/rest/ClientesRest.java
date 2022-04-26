@@ -23,6 +23,7 @@ import com.curso.modelo.entidad.Cliente;
 import com.curso.modelo.negocio.GestorClientes;
 import com.curso.rest.dto.ClienteDto;
 import com.curso.rest.dto.Mensaje;
+import com.curso.rest.dto.MensajeError;
 
 @RestController
 @RequestMapping("/clientes") //Esto servirá de prefijo a todos los 'path'
@@ -30,9 +31,6 @@ public class ClientesRest {
 
 	@Autowired
 	private GestorClientes gestorClientes;
-	
-	
-	
 	
 	/*
 	Metodo  Ruta			Body    Repuesta  Funcionalidad
@@ -65,14 +63,14 @@ public class ClientesRest {
 	public ResponseEntity<Object> buscar(@PathVariable("id") Integer id) {
 		Cliente cliente = gestorClientes.buscar(id);
 		if(cliente == null) {
-			Mensaje m = new Mensaje("404","No existe un cliente con ese id");
-			return new ResponseEntity<>(m, HttpStatus.NOT_FOUND);
+			MensajeError e = new MensajeError("404","No existe un cliente con ese id");
+			return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(new ClienteDto(cliente), HttpStatus.OK);
 	}
 	
 	@PostMapping(consumes=MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> insertar(@Valid() @RequestBody() ClienteDto clienteDto, BindingResult br) {
+	public ResponseEntity<Object> insertar(@Valid @RequestBody ClienteDto clienteDto, BindingResult br) {
 		
 		//Este Restcontroller no está utilizando el ExceptionHandler porque recoge el BindingResult
 		if(br.hasErrors()) {
@@ -88,7 +86,7 @@ public class ClientesRest {
 	@PutMapping(path="/{id}",
 			    consumes=MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> modificar(@PathVariable("id") Integer idCliente,
-										    @Valid() @RequestBody() ClienteDto clienteDto, 
+										    @Valid @RequestBody ClienteDto clienteDto, 
 			                                BindingResult br) {
 		if(br.hasErrors()) {
 			Mensaje m = new Mensaje("400","Datos inválidos");

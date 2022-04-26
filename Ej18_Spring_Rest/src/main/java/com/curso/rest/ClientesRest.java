@@ -31,9 +31,6 @@ public class ClientesRest {
 	@Autowired
 	private GestorClientes gestorClientes;
 	
-	
-	
-	
 	/*
 	Metodo  Ruta			Body    Repuesta  Funcionalidad
 	-----------------------------------------------------	 
@@ -71,7 +68,7 @@ public class ClientesRest {
 		return new ResponseEntity<>(new ClienteDto(cliente), HttpStatus.OK);
 	}
 	
-	@PostMapping(consumes=MimeTypeUtils.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes=MimeTypeUtils.APPLICATION_JSON_VALUE, produces=MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> insertar(@Valid() @RequestBody() ClienteDto clienteDto, BindingResult br) {
 		
 		//Este Restcontroller no está utilizando el ExceptionHandler porque recoge el BindingResult
@@ -88,7 +85,7 @@ public class ClientesRest {
 	@PutMapping(path="/{id}",
 			    consumes=MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> modificar(@PathVariable("id") Integer idCliente,
-										    @Valid() @RequestBody() ClienteDto clienteDto, 
+										    @Valid @RequestBody ClienteDto clienteDto, 
 			                                BindingResult br) {
 		if(br.hasErrors()) {
 			Mensaje m = new Mensaje("400","Datos inválidos");

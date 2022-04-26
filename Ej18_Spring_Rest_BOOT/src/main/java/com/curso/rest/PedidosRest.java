@@ -87,7 +87,7 @@ public class PedidosRest {
 	
 	@PostMapping(consumes = MimeTypeUtils.APPLICATION_JSON_VALUE,
 				 produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PedidoDto> insertar(@Valid() @RequestBody() PedidoDto pedidoDto) {
+	public ResponseEntity<PedidoDto> insertar(@Valid @RequestBody PedidoDto pedidoDto) {
 		Pedido pedido = pedidoDto.asPedido();
 		gestorPedidos.insertar(pedido);
 		return new ResponseEntity<>(new PedidoDto(pedido), HttpStatus.OK);		
@@ -121,14 +121,12 @@ public class PedidosRest {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseBody
 	public ResponseEntity<?> handleValidationException(MethodArgumentNotValidException e) {
-		Map<String, String> errores = 
-				e.getBindingResult().getFieldErrors()
+		Map<String, String> errores = e.getBindingResult().getFieldErrors()
 					.stream()
-						.collect(Collectors.toMap( fe -> (String) fe.getField(), 
-								                   fe -> (String) fe.getDefaultMessage()));
+					.collect(Collectors.toMap( fe -> (String) fe.getField(), 
+							                   fe -> (String) fe.getDefaultMessage()));
 		return new ResponseEntity<Object>(errores, HttpStatus.BAD_REQUEST);		
 	}
 	*/
-	
 	
 }

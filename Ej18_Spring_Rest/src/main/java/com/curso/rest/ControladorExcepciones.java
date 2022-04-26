@@ -18,7 +18,11 @@ public class ControladorExcepciones {
 	@ExceptionHandler(Throwable.class)
 	@ResponseBody
 	public ResponseEntity<?> handleValidationException(Exception e) {
-		return new ResponseEntity<Mensaje>(new Mensaje("500","Nos hemos caido con todo el equipo"), HttpStatus.INTERNAL_SERVER_ERROR);		
+		
+		System.out.println("=EXCEPCION CAPTURADA EN CONTROLADOR EXCEPCIONES==============================");
+		e.printStackTrace();
+		
+		return new ResponseEntity<Mensaje>(new Mensaje("500","Error:"+e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);		
 	}
 	
 }
