@@ -24,8 +24,7 @@ public class Aplicacion implements CommandLineRunner{
 	@Autowired
 	private EntityManagerFactory emf;
 	
-	public static void main(String[] args) {
-	
+	public static void main(String[] args) {	
 		SpringApplication.run(Aplicacion.class, args);
 	}
 
